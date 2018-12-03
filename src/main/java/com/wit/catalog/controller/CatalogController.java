@@ -1,5 +1,6 @@
 package com.wit.catalog.controller;
 
+import com.wit.catalog.services.CatalogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CatalogController {
     @GetMapping("get-items")
     public ResponseEntity getItems() {
-        return ResponseEntity.ok().body("Catalog");
+        return ResponseEntity.ok().body(new CatalogService().fetchItems());
     }
 }
