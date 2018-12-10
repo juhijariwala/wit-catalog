@@ -1,0 +1,29 @@
+version : '3'
+
+services:
+  web:
+    container_name: catalog
+    image: java:8
+    ports:
+    - 8080:8080
+    depends_on:
+    - catalog-db
+    volumes:
+      - ./target/wit-catalog.jar:/usr/share/service/wit-catalog.jar
+    entrypoint: java -jar /usr/share/service/wit-catalog.jar
+  catalog-db:
+    container_name: app-catalog-db
+    image: postgres:latest
+    environment:
+    -  POSTGRES_PASSWORD=catalog
+    -  POSTGRES_USER=catalog
+    -  POSTGRES_DB=catalog
+    volumes:
+    - ./setup.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    - catalog-db:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+
+volumes:
+  catalog-db: {}
+

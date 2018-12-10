@@ -68,6 +68,11 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.maven</groupId>
+            <artifactId>maven-migration-plugin</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

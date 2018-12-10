@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("CatalogService")
 public class CatalogService {
     private CatalogMapper catalogMapper;
 
@@ -29,5 +29,17 @@ public class CatalogService {
         List<Item> items = catalogMapper.fetch();
         sqlSession.commit();
         return items;
+    }
+
+    public Item fetchItem(int id) {
+        Item item = catalogMapper.fetchItem(id);
+        sqlSession.commit();
+        return item;
+    }
+
+    public boolean addItem(Item item) {
+        catalogMapper.addItem(item);
+        sqlSession.commit();
+        return true;
     }
 }
